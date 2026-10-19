@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Tamunokuro Iyo</title>
+  <style>
+    /* GLOBAL STYLES & RESET */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth; /* Enables smooth scrolling when clicking nav links */
+    }
+
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* NAVIGATION BAR */
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 18px;
+      color: #0f172a;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #475569;
+      font-weight: 600;
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    /* SECTION CONTAINER WRAPPER */
+    .section-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    /* 1. ABOUT ME SECTION */
+    .about-card {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .about-image {
+      flex: 1;
+      min-width: 300px;
+      background-color: #e2e8f0;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%); /* Keeps photo monochrome style */
+      display: block;
+    }
+
+    .about-content {
+      flex: 1;
+      padding: 40px 35px;
+    }
+
+    .about-content h1 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+
+    .highlight-tag {
+      background-color: #2563eb;
+      color: #ffffff;
+      padding: 4px 8px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .about-content p {
+      margin-bottom: 14px;
+      font-size: 15px;
+      color: #334155;
+    }
+
+    /* 2. PROJECTS SECTION */
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: 30px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .section-header p {
+      color: #64748b;
+      font-size: 15px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      background-color: #e2e8f0;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .project-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .project-description {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tech-badge {
+      background-color: #f1f5f9;
+      color: #334155;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-align: center;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: #2563eb;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+
+    /* RESPONSIVE MEDIA QUERY */
+    @media (max-width: 768px) {
+      .about-card {
+        flex-direction: column;
+      }
+      .about-image {
+        max-height: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav>
+      <div class="logo">PORTFOLIO</div>
+      <ul class="nav-links">
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- About Me Section -->
+    <section id="about" class="section-container">
+      <div class="about-card">
+        <div class="about-image">
+          <img src="your-image.jpg" alt="Profile Photo">
+        </div>
+        <div class="about-content">
+          <h1>ELVIS SCOFIELD OGBUNUDE</h1>
+          
+          <div class="highlight-tag">
+            Student, Director, and Small Business Owner in Redeemer's University Ede, Osun State, Nigeria.
+          </div>
+
+          <p><strong>Elvis S.U Ogbunude.</strong></p>
+          <p><strong>Nickname:</strong> Osibanjo.</p>
+          <p><strong>Aspiring Cybersecurity Analyst | Award-Winning Student Entrepreneur.</strong></p>
+          
+          <p>
+            Elvis Ogbunude is a driven and innovative student leader currently pursuing 
+            <strong>Cybersecurity and Computer Science</strong> at <strong>Wigwe University</strong>. 
+            With a technical foundation in <strong>Physics with Electronics</strong> from Redeemer's University.
+          </p>
+          
+          <p>
+            A proven leader with a commitment to integrity, dedicated to developing software systems and interactive applications.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-container">
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+        <p>A breakdown of technical developments and system designs I've worked on.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://via.placeholder.com/600x400" alt="Digital Library System">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Digital Library System</h3>
+            <p class="project-description">
+              A comprehensive system analysis and database management application featuring context flow diagrams and dynamic catalog searching.
+            </p>
+            <div class="tech-stack">
+              <span class="tech-badge">Java</span>
+              <span class="tech-badge">SQL</span>
+              <span class="tech-badge">HTML/CSS</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-primary">View Project</a>
+              <a href="#" class="btn btn-secondary">Source Code</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://via.placeholder.com/600x400" alt="Interactive Web Portal">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Custom Interactive Web Portal</h3>
+            <p class="project-description">
+              A responsive single-page web application featuring dynamic message cards, clean transitions, and personalized user feedback components.
+            </p>
+            <div class="tech-stack">
+              <span class="tech-badge">HTML5</span>
+              <span class="tech-badge">CSS3</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-primary">Live Demo</a>
+              <a href="#" class="btn btn-secondary">Source Code</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://via.placeholder.com/600x400" alt="Obstacle Course Mechanics">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Obstacle Course Mechanics</h3>
+            <p class="project-description">
+              A custom game environment featuring multi-stage obstacle mechanics, interactive checkpoints, and custom Luau scripting for dynamic physics.
+            </p>
+            <div class="tech-stack">
+              <span class="tech-badge">Luau</span>
+              <span class="tech-badge">Roblox Studio</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-primary">Play Game</a>
+              <a href="#" class="btn btn-secondary">Docs</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
